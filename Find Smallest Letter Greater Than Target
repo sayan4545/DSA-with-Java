@@ -1,0 +1,27 @@
+package com.sayan.BinarySearch;
+import java.util.*;
+
+public class Greaterthantarget {
+    public static void main(String[] args) {
+        char letter[] = {'a','b','c','d'};
+        char ch = 'c';
+        System.out.println(bs(letter,ch));
+
+    }
+    static char bs(char[] arr, char ch){
+        int start = 0;
+        int end = arr.length-1;
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]>ch){
+                end = mid-1;
+
+            }
+            else{
+                start =mid+1;
+            }
+        }
+        return arr[start % arr.length];
+    }
+
+}
