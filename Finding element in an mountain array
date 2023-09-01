@@ -1,0 +1,77 @@
+package com.sayan.BinarySearch;
+
+public class FindinMountainArray {
+    public static void main(String[] args) {
+        int[] arr = {1,3,7,9,6,5,4};
+        int target = 5;
+        if(find(arr,target)!=-1){
+            System.out.println(find(arr,target));
+
+        }else{
+            System.out.println(find2(arr,target));
+        }
+
+
+    }
+    static int ans(int[]arr,int target){
+        int peakElement = arr[search(arr)];
+        if(target<peakElement){
+            return find(arr,target);
+        }
+        else{
+            return find2(arr,target);
+        }
+    }
+    static int find(int[]arr,int target){
+
+        int start =0;
+        int end = search(arr);
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]>target){
+                end = mid-1;
+            }else if(arr[mid]<target){
+                start = mid+1;
+            }else{
+                return mid;
+            }
+        }
+        return -1;
+
+    }
+    static int find2(int[]arr,int target){
+        int start = search(arr)+1;
+        int end = arr.length-1;
+        while(start<=end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]>target){
+                start = mid+1;
+            }
+            else if(arr[mid]<target){
+                end = mid-1;
+            }
+            else{
+                return mid;
+            }
+        }
+        return -1;
+    }
+
+
+    static int search(int[]arr){
+        int start =0;
+        int end = arr.length-1;
+
+        while(start<end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]<arr[mid+1]){
+                start = mid+1;
+            }
+            else{
+                end = mid;
+            }
+        }
+        return start;
+    }
+    
+}
